@@ -2,8 +2,8 @@
   hosts: all
   become: yes
   tasks:
-    -name: Install nginx
-     apt:
-      name: nginx
-      update_cache: yes
-      state: present
+    - name: Install nginx
+      apt:
+        name: nginx
+        update_cache: yes
+        state: present
