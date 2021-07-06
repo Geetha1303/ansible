@@ -11,9 +11,9 @@
     replace: '0.0.0.0'
 
 - name: Start redis
-    systemd:
-      name: redis
-      state: started
-      enabled: yes
+  systemd:
+    name: redis
+    state: started
+    enabled: yes
 
 
