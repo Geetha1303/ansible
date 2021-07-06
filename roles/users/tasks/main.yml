@@ -1,6 +1,9 @@
-- name: Install a list of packages
-  apt:
-    pkg:
-      - openjdk-8-jre-headless
-      - openjdk-8-jdk-headless
-      - maven
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install a list of packages
+      apt:
+        pkg:
+          - openjdk-8-jre-headless
+          - openjdk-8-jdk-headless
+          - maven
