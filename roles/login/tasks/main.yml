@@ -16,6 +16,7 @@
         state=present
 
     - name: Source the bashrc file
+      sudo: no
       shell: ./home/ubuntu/.bashrc && source ~/.bashrc
       args:
         executable: /bin/bash
