@@ -17,3 +17,5 @@
 
     - name: Source the bashrc file
       shell: ./home/ubuntu/.bashrc && source ~/.bashrc
+      args:
+        executable: /bin/bash
