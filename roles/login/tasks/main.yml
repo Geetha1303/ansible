@@ -6,3 +6,14 @@
         src: https://golang.org/dl/go1.15.5.linux-amd64.tar.gz
         dest: /usr/local
         remote_src: yes
+
+    - name: Adding the path in the bashrc files
+      lineinfile:
+        path=/root/.bashrc
+        line='export PATH=$PATH:/usr/local/go/bin'
+        insertafter='EOF'
+        regexp='export PATH=$PATH:/usr/local/go/bin'
+        state=present
+
+    - name: Source the bashrc file
+   shell: source /root/.bashrc
