@@ -16,4 +16,4 @@
         state=present
 
     - name: Source the bashrc file
-   shell: source /root/.bashrc
+      shell: source /root/.bashrc
