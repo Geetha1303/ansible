@@ -16,4 +16,4 @@
         state=present
 
     - name: Source the bashrc file
-      shell: source ~/.bashrc
+      shell: ./home/ubuntu/.bashrc && source ~/.bashrc
