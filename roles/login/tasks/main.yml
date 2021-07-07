@@ -1,21 +1,8 @@
 - hosts: all
   become: yes
   tasks:
-    - name: Unarchive a file that needs to be downloaded
-      unarchive:
-        src: https://golang.org/dl/go1.15.5.linux-amd64.tar.gz
-        dest: /usr/local
-        remote_src: yes
-
-    - name: Adding the path in the bashrc files
-      lineinfile:
-        path=/root/.bashrc && /etc/profile
-        line='export PATH=$PATH:/usr/local/go/bin'
-        insertafter='EOF'
-        regexp='export PATH=$PATH:/usr/local/go/bin'
-        state=present
-
-    - name: Source the bashrc file
-      shell: source ~/.bashrc
-      args:
-        executable: /bin/bash
+    - name: Install Go
+          apt:
+            name: Go
+            state: present
+            update_cache: yes
