@@ -1,8 +1,8 @@
 - hosts: all
   become: yes
   tasks:
-    - name: Install Go
+    - name: Install Golang
           apt:
-            name: Go
+            name: golang
             state: present
             update_cache: yes
