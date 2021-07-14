@@ -4,11 +4,11 @@
   roles:
     - role: frontend
       tags: frontend
-      when: COMPONENT == "frontend"
+      when: COMPONENT == "frontend1"
 
     - role: login
       tags: login
-      when: COMPONENT == "login"
+      when: COMPONENT == "login1"
 
     - role: users
       tags: users
@@ -20,4 +20,4 @@
 
     - role: todo
       tags: todo
-      when: COMPONENT == "todo"
+      when: COMPONENT == "todo1"

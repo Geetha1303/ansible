@@ -1,0 +1,40 @@
+- name: Install npm
+  apt:
+    name: npm
+    state: present
+    update_cache: yes
+
+- name: Download todo1 from nexus
+  get_url:
+    url: http://172.31.8.88:8081/repository/todo1/todo1.zip
+    dest: /tmp/todo1.zip
+    username: admin
+    password: admin123
+
+- name: Clean the old artifacts
+  file:
+    path: /home/ubuntu/todo1
+    state: absent
+
+- name: Create path of artifacts
+  file:
+    path: /home/ubuntu/todo1
+    state: directory
+
+- name: Extract the todo1 content
+  unarchive:
+    src: /tmp/todo1.zip
+    dest: /home/ubuntu/todo1
+    remote_src: yes
+
+- name: Copy todo1 service file
+  copy:
+    src: todo1.service
+    dest: /etc/systemd/system/todo1.service
+
+- name: start todo1 service
+  systemd:
+    name: todo1
+    daemon-reload: yes
+    state: started
+    enabled: yes
