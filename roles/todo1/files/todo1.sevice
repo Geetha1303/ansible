@@ -1,0 +1,13 @@
+[Unit]
+Description = Todo Service
+[Service]
+User=root
+Environment=REDIS_HOST=${USER_DOMAIN1}
+Environment=REDIS_PORT=6379
+Environment=USERS_API_ADDRESS=http://${USER_DOMAIN}:8080
+WorkingDirectory=/root/todo
+ExecStart=npm start
+SyslogIdentifier=todo
+
+[Install]
+WantedBy=multi-user.target

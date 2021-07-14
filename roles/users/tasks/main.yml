@@ -8,3 +8,38 @@
           - openjdk-8-jdk-headless
           - maven
         update_cache: yes
+
+    - name: Download users from nexus
+      get_url:
+        url: http://172.31.8.88:8081/repository/users/users.zip
+        dest: /tmp/users.zip
+        username: admin
+        password: admin123
+
+    - name: Clean the old artifacts
+      file:
+        path: /home/ubuntu/users
+        state: absent
+
+    - name: Create path of artifacts
+      file:
+        path: /home/ubuntu/users
+        state: directory
+
+    - name: Extract the users content
+      unarchive:
+        src: /tmp/users.zip
+        dest: /home/ubuntu/frontend1
+        remote_src: yes
+
+    - name: Copy users service file
+      copy:
+        src: users.service
+        dest: /etc/systemd/system/users.service
+
+    - name: start users service
+      systemd:
+        name: users
+        daemon-reload: yes
+        state: started
+        enabled: yes

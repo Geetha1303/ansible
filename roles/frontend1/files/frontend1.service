@@ -1,0 +1,12 @@
+[Unit]
+Description = Frontend Service
+[Service]
+User=root
+Environment=AUTH_API_ADDRESS=http://${USER_DOMAIN}:8080
+Environment=TODOS_API_ADDRESS=http://${USER_DOMAIN1}:8080
+WorkingDirectory=/root/frontend
+ExecStart=npm start
+SyslogIdentifier=frontend
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+[Unit]
+Description = Login Service
+[Service]
+User=root
+Environment=GOROOT=/usr/local/go
+Environment=PATH=$PATH:$GOROOT/bin
+Environment=GOPATH=/root/login
+Environment=USERS_API_ADDRESS=http://${USER_DOMAIN}:8080
+Environment=AUTH_API_PORT=8080
+ExecStart=/usr/local/go/bin/go run /root/login/main.go /root/login/user.go /root/login/tracing.go
+SyslogIdentifier=login
+
+[Install]
+WantedBy=multi-user.target

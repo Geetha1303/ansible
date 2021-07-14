@@ -1,0 +1,44 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install Golang
+      apt:
+        name: golang
+        state: present
+        update_cache: yes
+
+    - name: Download login1 from nexus
+      get_url:
+        url: http://172.31.8.88:8081/repository/login1/login1.zip
+        dest: /tmp/login1.zip
+        username: admin
+        password: admin123
+
+    - name: Clean the old artifacts
+      file:
+        path: /home/ubuntu/login1
+        state: absent
+
+    - name: Create path of artifacts
+      file:
+        path: /home/ubuntu/login1
+        state: directory
+
+    - name: Extract the login1 content
+      unarchive:
+        src: /tmp/login1.zip
+        dest: /home/ubuntu/login1
+        remote_src: yes
+
+    - name: Copy login1 service file
+      copy:
+        src: login1.service
+        dest: /etc/systemd/system/login1.service
+
+    - name: start login1 service
+      systemd:
+        name: login1
+        daemon-reload: yes
+        state: started
+        enabled: yes
+
