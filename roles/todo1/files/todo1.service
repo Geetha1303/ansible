@@ -2,9 +2,9 @@
 Description = Todo Service
 [Service]
 User=root
-Environment=REDIS_HOST=${USER_DOMAIN1}
+Environment=REDIS_HOST=172.31.8.140
 Environment=REDIS_PORT=6379
-Environment=USERS_API_ADDRESS=http://${USER_DOMAIN}:8080
+Environment=USERS_API_ADDRESS=http://172.31.11.18:8080
 WorkingDirectory=/root/todo
 ExecStart=npm start
 SyslogIdentifier=todo
