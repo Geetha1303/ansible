@@ -15,18 +15,18 @@
 
 - name: Clean the old artifacts
   file:
-    path: /home/ubuntu/users
+    path: /root/users
     state: absent
 
 - name: Create path of artifacts
   file:
-    path: /home/ubuntu/users
+    path: /root/users
     state: directory
 
 - name: Extract the users content
   unarchive:
     src: /tmp/users.zip
-    dest: /home/ubuntu/users
+    dest: /root/users
     remote_src: yes
 
 - name: Copy users service file

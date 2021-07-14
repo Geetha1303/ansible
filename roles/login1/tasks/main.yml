@@ -13,18 +13,18 @@
 
 - name: Clean the old artifacts
   file:
-    path: /home/ubuntu/login1
+    path: /root/login1
     state: absent
 
 - name: Create path of artifacts
   file:
-    path: /home/ubuntu/login1
+    path: /root/login1
     state: directory
 
 - name: Extract the login1 content
   unarchive:
     src: /tmp/login1.zip
-    dest: /home/ubuntu/login1
+    dest: /root/login1
     remote_src: yes
 
 - name: Copy login1 service file

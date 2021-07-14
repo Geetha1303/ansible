@@ -13,18 +13,18 @@
 
 - name: Clean the old artifacts
   file:
-    path: /home/ubuntu/frontend1
+    path: /root/frontend1
     state: absent
 
 - name: Create path of artifacts
   file:
-    path: /home/ubuntu/frontend1
+    path: /root/frontend1
     state: directory
 
 - name: Extract the frontend1 content
   unarchive:
     src: /tmp/frontend1.zip
-    dest: /home/ubuntu/frontend1
+    dest: /root/frontend1
     remote_src: yes
 
 - name: Copy frontend1 service file

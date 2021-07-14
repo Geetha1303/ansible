@@ -5,9 +5,9 @@ User=root
 Environment=REDIS_HOST=172.31.8.140
 Environment=REDIS_PORT=6379
 Environment=USERS_API_ADDRESS=http://172.31.11.18:8080
-WorkingDirectory=/root/todo
+WorkingDirectory=/root/todo1
 ExecStart=npm start
-SyslogIdentifier=todo
+SyslogIdentifier=todo1
 
 [Install]
 WantedBy=multi-user.target
