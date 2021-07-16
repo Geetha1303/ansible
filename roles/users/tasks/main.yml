@@ -8,7 +8,7 @@
 
 - name: Download users from nexus
   get_url:
-    url: http://172.31.8.88:8081/repository/users/users-{{APP_VERSIOIN}}.zip
+    url: http://172.31.8.88:8081/repository/users/users-{{APP_VERSION}}.zip
     dest: /tmp/users.zip
     username: admin
     password: admin123
