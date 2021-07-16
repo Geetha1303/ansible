@@ -3,8 +3,8 @@ Description = Users Service
 [Service]
 User=root
 Environment=JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-ExecStart=java -jar /root/users/target/users-api-0.0.1.jar
+ExecStart=java -jar /root/users/users.jar
 SyslogIdentifier=users
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-users.target
