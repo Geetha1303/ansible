@@ -32,7 +32,8 @@
   changed_when: no
   ignore_errors: true
 
-- set_fact:
+- name:set facts
+  set_fact:
     go_path: "{{ lookup('env', 'GOPATH') | default(ansible_env.HOME+'/go', true) }}"
   when: not result|failed
 
