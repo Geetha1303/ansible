@@ -26,12 +26,18 @@
     src: /tmp/login1.zip
     dest: /root/login1
     remote_src: yes
-- name: check go version
-  command: go version
-  register: result
-  changed_when: no
-  ignore_errors: true
 
+- name: Configure Go get Repos
+  shell: |
+    go get github.com/openzipkin/zipkin-go
+    go get github.com/openzipkin/zipkin-go/middleware/http
+    go get github.com/openzipkin/zipkin-go/reporter/http
+    go get github.com/labstack/echo
+    go get github.com/labstack/echo/middleware
+    go get github.com/labstack/gommon/log
+  environment:
+    GOROOT: /usr/lib/go
+    GOPATH: /root/login1
 #- set_fact:
  #   go_path: "{{ lookup('env', 'GOPATH') | default(ansible_env.HOME+'/go', true) }}"
   #when: not result|failed
