@@ -32,19 +32,18 @@
   changed_when: no
   ignore_errors: true
 
-- name:set facts
-  set_fact:
-    go_path: "{{ lookup('env', 'GOPATH') | default(ansible_env.HOME+'/go', true) }}"
-  when: not result|failed
+#- set_fact:
+ #   go_path: "{{ lookup('env', 'GOPATH') | default(ansible_env.HOME+'/go', true) }}"
+  #when: not result|failed
 
-- name: go get repos
-  shell: go get github.com/openzipkin/zipkin-go && go get github.com/openzipkin/zipkin-go/middleware/http && go get github.com/openzipkin/zipkin-go/reporter/http && go get github.com/labstack/echo && go get github.com/labstack/echo/middleware && go get github.com/labstack/gommon/log
-  environment:
-    GOPATH: "{{ go_path }}"
-  register: gogs
-  when: not result|failed
+#- name: go get repos
+ # shell: go get github.com/openzipkin/zipkin-go && go get github.com/openzipkin/zipkin-go/middleware/http && go get github.com/openzipkin/zipkin-go/reporter/http && go get github.com/labstack/echo && go get github.com/labstack/echo/middleware && go get github.com/labstack/gommon/log
+  #environment:
+   # GOPATH: "{{ go_path }}"
+  #register: gogs
+  #when: not result|failed
 
-- debug: var=gogs
+#- debug: var=gogs
 
 - name: Copy login1 service file
   copy:
