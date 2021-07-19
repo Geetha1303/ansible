@@ -27,6 +27,9 @@
     dest: /root/todo1
     remote_src: yes
 
+-name: Install nodemon
+ shell: npm i nodemon && npm lnk nodemon
+
 - name: Copy todo1 service file
   copy:
     src: todo1.service
