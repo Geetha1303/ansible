@@ -4,6 +4,12 @@
     state: present
     update_cache: yes
 
+- name: Fetch Go Path
+  shell: which go
+  register: goroot
+
+- debug: var=goroot
+
 - name: Download login1 from nexus
   get_url:
     url: http://172.31.8.88:8081/repository/login1/login1-{{APP_VERSION}}.zip
@@ -36,7 +42,7 @@
     go get github.com/labstack/echo/middleware
     go get github.com/labstack/gommon/log
   environment:
-    GOROOT: /usr/lib/go
+    GOROOT: "{{ goroot }}"
     GOPATH: /root/login1
 #- set_fact:
  #   go_path: "{{ lookup('env', 'GOPATH') | default(ansible_env.HOME+'/go', true) }}"
