@@ -27,7 +27,7 @@
     dest: /root/login1
     remote_src: yes
 - name: check go version
-    command: go version
+    shell: go version
     register: result
     changed_when: no
     ignore_errors: true
