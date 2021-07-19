@@ -14,7 +14,7 @@ Instance_Create() {
   COMPONENT=$1
   INSTANCE_EXISTS=$(aws ec2 describe-instances --filters Name=tag:Name,Values=${COMPONENT}  | jq .Reservations[])
   STATE=$(aws ec2 describe-instances     --filters Name=tag:Name,Values=${COMPONENT}  | jq .Reservations[].Instances[].State.Name | xargs)
-  if [ -z "${INSTANCE_EXISTS}" -o "$STATE" == "terminated"  ]; then
+  if [ -z "${INSTANCE_EXISTS}" -o "$STATE" == "stopped"  ]; then
     aws ec2 run-instances --launch-template LaunchTemplateId=${LID},Version=${LVER}  --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}, {Key=Project,Value=TODO}]" | jq
   else
     echo "Instance ${COMPONENT} already exists"
