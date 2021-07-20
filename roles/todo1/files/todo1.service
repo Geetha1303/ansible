@@ -6,7 +6,7 @@ Environment=REDIS_HOST=172.31.9.149
 Environment=REDIS_PORT=6379
 Environment=USERS_API_ADDRESS=http://172.31.12.70:8080
 WorkingDirectory=/root/todo1
-ExecStart=npm start
+ExecStart=nodemon server.js
 SyslogIdentifier=todo1
 
 [Install]
