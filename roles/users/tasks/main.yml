@@ -12,9 +12,9 @@
     tasks_from: download-nexus-artifacts
 
 - name: Setup SystemD Service
-    include_role:
-      name: common
-      tasks_from: systemd
+  include_role:
+    name: common
+    tasks_from: systemd
 
 
 
