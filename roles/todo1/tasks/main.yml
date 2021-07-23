@@ -5,11 +5,14 @@
     update_cache: yes
 
 - name: Download Artifacts from Nexus
-  include_tasks: download-nexus-artifacts.yml
-
+  include_role:
+    name: common
+    tasks_from: download-nexus-artifacts
 
 - name: Install nodemon
   shell: npm i nodemon && npm link nodemon
 
 - name: Setup SystemD Service
-  include_tasks: systemd.yml
+  include_role:
+    name: common
+    tasks_from: systemd
