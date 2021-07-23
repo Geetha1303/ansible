@@ -6,37 +6,10 @@
       - maven
     update_cache: yes
 
-- name: Download users from nexus
-  get_url:
-    url: http://172.31.8.88:8081/repository/users/users-{{APP_VERSION}}.zip
-    dest: /tmp/users.zip
-    username: admin
-    password: admin123
+- name: Download Artifacts from Nexus
+  include_tasks: download-nexus-artifacts.yml
 
-- name: Clean the old artifacts
-  file:
-    path: /root/users
-    state: absent
+- name: Setup SystemD Service
+  include_tasks: systemd.yml
 
-- name: Create path of artifacts
-  file:
-    path: /root/users
-    state: directory
 
-- name: Extract the users content
-  unarchive:
-    src: /tmp/users.zip
-    dest: /root/users
-    remote_src: yes
-
-- name: Copy users service file
-  copy:
-    src: users.service
-    dest: /etc/systemd/system/users.service
-
-- name: start users service
-  systemd:
-    name: users
-    daemon-reload: yes
-    state: started
-    enabled: yes

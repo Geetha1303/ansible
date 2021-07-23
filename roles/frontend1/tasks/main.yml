@@ -4,37 +4,9 @@
     state: present
     update_cache: yes
 
-- name: Download frontend1 from nexus
-  get_url:
-    url: http://172.31.8.88:8081/repository/frontend1/frontend1-{{APP_VERSION}}.zip
-    dest: /tmp/frontend1.zip
-    username: admin
-    password: admin123
+- name: Download Artifacts from Nexus
+  include_tasks: download-nexus-artifacts.yml
 
-- name: Clean the old artifacts
-  file:
-    path: /root/frontend1
-    state: absent
+- name: Setup SystemD Service
+  include_tasks: systemd.yml
 
-- name: Create path of artifacts
-  file:
-    path: /root/frontend1
-    state: directory
-
-- name: Extract the frontend1 content
-  unarchive:
-    src: /tmp/frontend1.zip
-    dest: /root/frontend1
-    remote_src: yes
-
-- name: Copy frontend1 service file
-  copy:
-    src: frontend1.service
-    dest: /etc/systemd/system/frontend1.service
-
-- name: start frontend1 service
-  systemd:
-    name: frontend1
-    daemon-reload: yes
-    state: started
-    enabled: yes
