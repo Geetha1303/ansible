@@ -2,7 +2,7 @@
 Description = Todo Service
 [Service]
 User=root
-Environment=REDIS_HOST=172.31.9.149
+Environment=REDIS_HOST=redis.gvdevops.online
 Environment=REDIS_PORT=6379
 Environment=USERS_API_ADDRESS=http://users.gvdevops.online:8080
 WorkingDirectory=/root/todo1
