@@ -1,0 +1,22 @@
+- name: Download todo1 from nexus
+  get_url:
+    url: http://172.31.8.88:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: /tmp/{{COMPONENT}}.zip
+    username: admin
+    password: admin123
+
+- name: Clean the old artifacts
+  file:
+    path: /root/{{COMPONENT}}
+    state: absent
+
+- name: Create path of artifacts
+  file:
+    path: /root/{{COMPONENT}}
+    state: directory
+
+- name: Extract the {{COMPONENT}} content
+  unarchive:
+    src: /tmp/{{COMPONENT}}.zip
+    dest: /root/{{COMPONENT}}
+    remote_src: yes
