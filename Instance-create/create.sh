@@ -26,13 +26,13 @@ Instance_Create() {
   sed -e "s/COMPONENT/${COMPONENT}/" -e "s/IPADDRESS/${IPADDRESS}/" record.json >/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id Z07549851GV8ILAQM5W75 --change-batch file:///tmp/record.json
   sed -i -e "/${COMPONENT}/ d" ../inventory
-  echo "${IPADDRESS} COMPONENT=$(echo ${COMPONENT} | awk -F - '{print $1}')" >>../inventory
+  echo "${IPADDRESS} COMPONENT=$(echo ${COMPONENT} | awk -F - '{print $1}')" >>../inv
 }
 
 if [ "$1" == "all" ]; then
   for instance in frontend1 redis users todo1 login1 ; do
-    Instance_Create $instance
+    Instance_Create $instance-dev
   done
 else
-  Instance_Create $1
+  Instance_Create $1-dev
 fi
