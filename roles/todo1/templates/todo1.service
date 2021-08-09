@@ -2,9 +2,9 @@
 Description = Todo Service
 [Service]
 User=root
-Environment=REDIS_HOST=redis.gvdevops.online
+Environment=REDIS_HOST=redis-{{ENV}}.gvdevops.online
 Environment=REDIS_PORT=6379
-Environment=USERS_API_ADDRESS=http://users.gvdevops.online:8080
+Environment=USERS_API_ADDRESS=http://users-{{ENV}}.gvdevops.online:8080
 WorkingDirectory=/root/todo1
 ExecStart=nodemon server.js
 SyslogIdentifier=todo1
