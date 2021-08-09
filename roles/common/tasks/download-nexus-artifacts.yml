@@ -1,4 +1,4 @@
-- name: Download todo1 from nexus
+- name: Download {{COMPONENT}} from nexus
   get_url:
     url: http://172.31.8.88:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
     dest: /tmp/{{COMPONENT}}.zip
